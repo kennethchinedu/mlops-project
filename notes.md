@@ -25,3 +25,13 @@ i moved back into my local directory after deativate
 
 I dont thing .venv should be commited, it has a lot of things that can slow down push and make app larger
 
+the == pins the package to a particular version 
+certifi==2026.6.17
+charset-normalizer==3.4.9
+idna==3.18
+requests==2.34.2
+urllib3==2.7.0
+
+Requirement.txt are packages needed to run the program, so they need to be commited so other environments running the program can see it too
+
+I think you pin it for consistency because at the point of development the dependencies are consistent with oyour ap, you dnt want a break
