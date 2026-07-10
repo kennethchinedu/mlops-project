@@ -37,6 +37,11 @@ Requirement.txt are packages needed to run the program, so they need to be commi
 I think you pin it for consistency because at the point of development the dependencies are consistent with oyour ap, you dnt want a break
 
 
-the fetch is the code pushed and where i can fetch from, the push is my local git
+both are server urls, one is used when pushing and another when pulling
 I think the u means i want to push online and from this branch moving forward
 .venv is not there 
+
+i think origin is like the source i want to push and pull from
+So basically a commit is a save snapshot, it like a save made in a time fraame and saved somewhere, ina history,so when i push a code, it take all the chains of canges made and copies it to the sever
+eveything i did not push online is lost
+
