@@ -8,3 +8,5 @@ staged files are changes prepared to go into our next commit
 
 config before commit informs git of he author, who is making and commiting the changes , the author
 
+/usr/local/bin/python3
+
