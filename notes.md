@@ -35,3 +35,8 @@ urllib3==2.7.0
 Requirement.txt are packages needed to run the program, so they need to be commited so other environments running the program can see it too
 
 I think you pin it for consistency because at the point of development the dependencies are consistent with oyour ap, you dnt want a break
+
+
+the fetch is the code pushed and where i can fetch from, the push is my local git
+I think the u means i want to push online and from this branch moving forward
+.venv is not there 
