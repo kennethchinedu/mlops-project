@@ -10,3 +10,18 @@ config before commit informs git of he author, who is making and commiting the c
 
 /usr/local/bin/python3
 
+Now which python is running within the python inside the virtul environment on /Users/apple/Desktop/Mlops/project1/.venv/bin/python3
+
+Almost nothing was in when i ran pip list firs time
+
+certifi            2026.6.17
+charset-normalizer 3.4.9
+idna               3.18
+pip                25.2
+requests           2.34.2
+urllib3            2.7.0
+
+i moved back into my local directory after deativate
+
+I dont thing .venv should be commited, it has a lot of things that can slow down push and make app larger
+
