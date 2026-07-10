@@ -35,9 +35,7 @@ Work inside `project1/`. Do each step yourself and **write down what you observe
 
 1. What does the PATH have to do with which Python runs? /usr/local/bin/python3
 2. What's the difference between a *modified* file, a *staged* file, and a *committed* file? modified files are files that was changed
- stageed files are files that are being tracked, committed are files that have been saved and ready to push
 
 3. Why did we NOT commit before configuring `git config`?
-To keep track of the files we want to commit
 
 When done, tell me "review" and I'll check your work.
