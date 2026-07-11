@@ -49,4 +49,4 @@ TypeError
 it works cus it converts the string 3 to int 3 by wrapping it inside the int function
 
 input always returns string 
-The first is a divider which returns float the other is a remender which returns integer
+The first is a divider which returns float the other is a floor division which returns integer cutting off the other numbers and returns only the integer
