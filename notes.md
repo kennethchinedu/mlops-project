@@ -45,3 +45,8 @@ i think origin is like the source i want to push and pull from
 So basically a commit is a save snapshot, it like a save made in a time fraame and saved somewhere, ina history,so when i push a code, it take all the chains of canges made and copies it to the sever
 eveything i did not push online is lost
 
+TypeError
+it works cus it converts the string 3 to int 3 by wrapping it inside the int function
+
+input always returns string 
+The first is a divider which returns float the other is a remender which returns integer
