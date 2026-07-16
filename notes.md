@@ -60,3 +60,6 @@ https://stackoverflow.com/questions/75653075/looping-through-a-list-of-dictionar
 https://docs.python.org/3/tutorial/datastructures.html
 
 Is None checks for identity and == checks for equality, that is a big different.
+
+looping over a dictionary directly yields only its keys, while looping over .items() yields key-value pairs as tuples
+I think it will return an empty columns for all, not so sure
