@@ -50,3 +50,13 @@ it works cus it converts the string 3 to int 3 by wrapping it inside the int fun
 
 input always returns string 
 The first is a divider which returns float the other is a floor division which returns integer cutting off the other numbers and returns only the integer
+
+List are mutable objects, you can loop, list and read them and write to them them
+Dictionaries allows us to store key pair values, you can update a dictonary, use the get function to check if a key pair exists
+
+
+https://www.geeksforgeeks.org/python/python-dictionary-get-method/
+https://stackoverflow.com/questions/75653075/looping-through-a-list-of-dictionaries-defining-and-saving-the-variables-for-us
+https://docs.python.org/3/tutorial/datastructures.html
+
+Is None checks for identity and == checks for equality, that is a big different.
