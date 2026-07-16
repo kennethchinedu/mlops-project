@@ -1,9 +1,5 @@
 students = [
-    {"name": None, "age": 40, "city": "Lagos"},
-    {"name": "Alice", "age": None, "city": None},
-    {"name": "Ken", "age": None, "city": "Owerri"},
-    {"name": "Mike", "age": 22, "city": None},
-    {"name": None, "age": 12, "city": None},
+
 ]
 
 missing_age = 0

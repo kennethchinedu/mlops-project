@@ -62,4 +62,4 @@ https://docs.python.org/3/tutorial/datastructures.html
 Is None checks for identity and == checks for equality, that is a big different.
 
 looping over a dictionary directly yields only its keys, while looping over .items() yields key-value pairs as tuples
-I think it will return an empty columns for all, not so sure
+The print statement loops over and return zero values for the list, it means the list exists but the context of the check is returning nothing, in fact printing just zero values is misleading, it does not give full context on what exactly is happening
