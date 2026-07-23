@@ -73,3 +73,30 @@ Parameters are the placeholders inside the function definition, while arguments 
 variables defined in functions are called local variables, they can't be used outside, why that matters? So the right variable is scoped to the right places to avoid missing variables
 
 An empty function returns None to the computer's memory, while a print() statement inside a function sends text to the human screen.
+
+
+>>> try:
+...     ken["city"]
+...     "ken".items()
+... except KeyError:
+...     print("my dictionary has not such key")
+...     
+my dictionary has not such key
+
+My finding is that it only catches the exceptions specified in the block, other failed exceptions are not caught
+
+
+
+When attempting `ken["city"]`, it accurately catches the missing key.
+
+When running `"ken".items()`, it lets the program crash with an `AttributeError`. This is the correct behavior because a string attribute error is fundamentally different from a missing dictionary key.
+
+
+When running "ken".items(), the bare except completely silences the AttributeError
+
+
+Raised means an error occurs and Python throws an exception. Handled means an except block catches the exception so the program can continue.
+
+Catching a specific exception avoids hiding unrelated bugs. A bare except: can accidentally catch unexpected errors like TypeError, NameError, or even KeyboardInterrupt.
+
+Yes. A finally block runs whether or not an exception occurs. It's used for cleanup tasks, such as closing files, releasing resources, or disconnecting from a database.
