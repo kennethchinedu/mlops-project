@@ -2,11 +2,15 @@
 
 **Goal:** one end-to-end automated MLOps project (see CURRICULUM.md) + entry-level MLOps engineer readiness
 **Current milestone:** M1 — Python core, taught through data
-**Current lesson:** 1.5 — not yet assigned
+**Current lesson:** 1.5 — reading files: CSV/JSON (assigned 2026-07-23)
 **Project dataset:** not chosen yet (decided in M2)
 
 ## Daily targets — 2026-07-23
-- [ ] Assign and start lesson 1.5
+- [ ] Lesson 1.5: plain-English file-to-report step list + exception types reviewed before coding
+- [ ] REPL/small-script lab on csv.DictReader + json.load recorded in notes.md
+- [ ] File-reading function returns list-of-dicts shape `dataset_summary` already expects
+- [ ] FileNotFoundError (or similar) caught with a clean message, not a crash
+- [ ] Two real data files on disk, full pipeline run on both; check-yourself answered; committed + pushed
 
 ## Completed lessons
 - 0.1 — Python verification + git basics (PASSED 2026-07-10 after 3 review rounds)
