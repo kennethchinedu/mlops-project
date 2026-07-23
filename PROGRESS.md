@@ -2,11 +2,15 @@
 
 **Goal:** one end-to-end automated MLOps project (see CURRICULUM.md) + entry-level MLOps engineer readiness
 **Current milestone:** M1 — Python core, taught through data
-**Current lesson:** 1.4 — not yet assigned
+**Current lesson:** 1.4 — exceptions & tracebacks (assigned 2026-07-23)
 **Project dataset:** not chosen yet (decided in M2)
 
 ## Daily targets — 2026-07-23
-- [ ] Assign and start lesson 1.4
+- [ ] Lesson 1.4: plain-English malformed-data list + exception types reviewed before coding
+- [ ] REPL lab on KeyError / try-except recorded in notes.md
+- [ ] `dataset_summary` updated to handle a malformed row without crashing
+- [ ] Third (malformed) test dataset added; all three datasets run clean
+- [ ] Check-yourself questions answered; committed + pushed
 
 ## Completed lessons
 - 0.1 — Python verification + git basics (PASSED 2026-07-10 after 3 review rounds)
