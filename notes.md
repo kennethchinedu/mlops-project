@@ -63,3 +63,13 @@ Is None checks for identity and == checks for equality, that is a big different.
 
 looping over a dictionary directly yields only its keys, while looping over .items() yields key-value pairs as tuples
 The print statement loops over and return zero values for the list, it means the list exists but the context of the check is returning nothing, in fact printing just zero values is misleading, it does not give full context on what exactly is happening
+
+The first function takes a  list of dictionaries, breaks it up and returns variables, that the secod ine can ready
+
+The second function takes in list of variables row_count, missing_name, missing_age, missing_city that the first function returned and write some texts about it, saying how many rows is here and here based on what the first function returned 
+
+Parameters are the placeholders inside the function definition, while arguments are the actual values you pass into the function when you call it
+
+variables defined in functions are called local variables, they can't be used outside, why that matters? So the right variable is scoped to the right places to avoid missing variables
+
+An empty function returns None to the computer's memory, while a print() statement inside a function sends text to the human screen.
