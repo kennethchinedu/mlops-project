@@ -2,11 +2,15 @@
 
 **Goal:** one end-to-end automated MLOps project (see CURRICULUM.md) + entry-level MLOps engineer readiness
 **Current milestone:** M1 — Python core, taught through data
-**Current lesson:** 1.6 — not yet assigned
+**Current lesson:** 1.6 — modules & project layout (assigned 2026-07-25)
 **Project dataset:** not chosen yet (decided in M2)
 
 ## Daily targets — 2026-07-25
-- [ ] Assign and start lesson 1.6
+- [ ] Lesson 1.6: plain-English layout plan reviewed before restructuring
+- [ ] Scratch module/import experiment recorded in notes.md
+- [ ] `profiler.py` module (defs only) + `lesson6.py` entry point (`__main__`-guarded) created
+- [ ] Entry point reproduces lesson 1.5's exact correct output
+- [ ] Check-yourself answered; committed + pushed
 
 ## Completed lessons
 - 0.1 — Python verification + git basics (PASSED 2026-07-10 after 3 review rounds)
