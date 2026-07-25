@@ -2,13 +2,21 @@
 
 **Goal:** one end-to-end automated MLOps project (see CURRICULUM.md) + entry-level MLOps engineer readiness
 **Current milestone:** M1 — Python core, taught through data
-**Current lesson:** 1.7 — CLI args & dynamic columns (assigned 2026-07-25; last practice lesson before the M1 capstone attempt)
+**Current lesson:** 1.7 — CLI args & dynamic columns (assigned 2026-07-25; last practice lesson before the M1 capstone attempt) — IN PROGRESS, paused mid-session after ~5hrs, resume here
 **Project dataset:** not chosen yet (decided in M2)
 
+## Where lesson 1.7 stands (paused 2026-07-25, resume next session)
+Dynamic per-column counting in `dataset_summary` (practice/lesson3.py) is working and verified: `counts` dict correctly builds up `{'city': 1}` for `data`, correctly stays empty `{}` for the fully-clean `new_data`. `data_info` correctly loops `counts.items()` and prints a line per missing column. Multi-dataset run (`data`, `new_data`, `malformed_data`) works once each call uses distinct variable names.
+
+**Open design question to resume with:** `malformed_data` has 2 rows with a key *entirely absent* (e.g. James's row has no `city` key at all, vs. a key present with value `None`). Current logic (`for key, value in data.items(): if value is None`) only ever sees keys that exist in a row — so a genuinely absent key is never counted toward that column's missing-count; it silently produces no `counts` entry for that row's absence. Student was asked to decide, as a design choice, whether "missing key entirely" should count toward the same per-column counter as "key present but None," or whether it's intentionally a different case already handled by the `bad_rows`/`KeyError` mechanism. Not yet answered — start next session here.
+
+**Not yet started:** the `sys.argv` CLI-argument part of lesson 1.7 (checklist items 1, 3, 4 in lessons/lesson-1.7.md) — session so far was entirely spent on the dynamic-counting half (item 2). `read_data`/`profiler.py` (from lesson 1.6) haven't been touched to use the new counts-dict-based `dataset_summary`/`data_info` yet — will need reconciling once lesson 1.7's `dataset_summary` rewrite is finalized, since `profiler.py` still has the old hardcoded-column version.
+
 ## Daily targets — 2026-07-25
-- [ ] Lesson 1.7: plain-English dynamic-counting plan reviewed before coding
+- [ ] Resume lesson 1.7: resolve the missing-key-vs-None-value design question above
+- [ ] Then: sys.argv CLI argument work (checklist items 1, 3, 4) — not yet started
 - [ ] REPL lab on sys.argv + dict.get recorded in notes.md
-- [ ] `dataset_summary` counts missing values per column dynamically (no hardcoded column names)
+- [ ] `dataset_summary` counts missing values per column dynamically (no hardcoded column names) — DONE, verified working
 - [ ] File path comes from `sys.argv[1]`; missing-argument case handled without a crash
 - [ ] Third dataset with unfamiliar columns proves dynamic counting works; check-yourself answered; committed + pushed
 
