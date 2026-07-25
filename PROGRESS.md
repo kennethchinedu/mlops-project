@@ -16,13 +16,33 @@
 
 **Suggestion for next session:** this lesson has now run ~5-6 hours across two sessions on one sub-problem (absent-key detection). Worth considering whether to timebox it — e.g. walk through the two-pass approach more directly to unblock forward progress, rather than continuing pure Socratic hinting, since the CLI-args half of the lesson hasn't even started.
 
+## Capstone progress (paused 2026-07-25, resume next session)
+**DONE, verified working, in `practice/lesson6.py`:** real CLI argument handling. `sys.argv[1]` supplies the file path (no hardcoded path anywhere); `import sys` added; missing-argument case caught via `except IndexError:` with a clear, actionable message ("Error: Missing CSV file path. Usage: python app.py <path_to_csv>. Example: ..."). Verified against 3 cases: no argument (clean error, no traceback), `practice/data/data2.csv` (correct: 0 missing everything, 4 rows), `practice/data/data.csv` (correct: 1 missing name, 1 missing school, 4 rows) — same code, different CLI argument, zero source changes between runs. One trivial cleanup outstanding: `lesson6.py` line 5 has a duplicate `import sys` (harmless, just redundant).
+
+**NOT YET DONE — this is the real remaining work:** `practice/profiler.py`'s `dataset_summary`/`data_info` are still the **old, pre-1.7 hardcoded version** (`missing_name`/`missing_school`/`missing_city` as named variables, direct `data["name"]` lookups) — `lesson6.py` currently calls this old version via `check_data`, so column names are NOT yet dynamic in the actual capstone code path. The working dynamic-counting logic from the lesson-1.7 sessions lives in `practice/lesson3.py`, not `profiler.py` — needs porting over. Still unresolved even in that lesson3.py version: a column that's entirely **absent** from a row (vs. present-with-`None`) is never counted (see prior lesson-1.7 log entries below for full detail on this gap and the discussed two-pass fix). Session ended here because the student was mentally fatigued after a long stretch on lesson 1.7 before pivoting to the capstone — this is a "pick back up fresh" stopping point, not a comprehension failure.
+
+**Resume next session with, in order:**
+1. Plain-English plan (capstone step 0, not yet done): how to derive the "known columns" set dynamically (union of keys across all rows) instead of hardcoding.
+2. Port the dynamic per-column counting from `lesson3.py` into `profiler.py`'s `dataset_summary`/`data_info`, replacing the old hardcoded version.
+3. Fix the absent-key-vs-`None` gap using the two-pass approach already discussed (collect all known keys first; then check `key not in row or row[key] is None` per row).
+4. Test against two CSVs with genuinely different column names (not just data.csv/data2.csv, which share the same 3 columns) — this hasn't been done at all yet and is a real capstone requirement.
+5. Remove the duplicate `import sys` in `lesson6.py`.
+6. REPL lab on `sys.argv`/`dict.get` still owed for notes.md (informal at this point since the real code already demonstrates both, but the lesson checklist asked for it explicitly).
+
+## Where lesson 1.7 stands (context for the above, superseded by capstone pivot)
+**Confirmed current state of `practice/lesson3.py` as of pause (verified by running it just now):** `dataset_summary` does dynamic per-column counting via `for key, value in data.items(): if value is None: counts[key] = counts.get(key, 0) + 1` — no hardcoded column names, correctly builds `{'city': 1}` for `data`, empty `{}` for clean `new_data`. Multi-dataset run uses distinct variable names per call (`bad_rows/row_count/counts`, `bad_rows1/row_count1/counts1`, `bad_rows2/row_count2/counts2`) to avoid the overwrite bug hit earlier. Current full-run output: `data` → `city:1, 0 bad rows, total 2 rows` (correct); `new_data` and `malformed_data` produce no report line each (their `data_info` calls run but the f-string only fires inside `for key, value in counts.items()`, so an empty `counts` prints nothing at all for either — including `malformed_data`, silently).
+
+**Unresolved design gap (this is the actual open problem, discussed at length but not yet fixed in the file):** `malformed_data` has 2 rows with a key *entirely absent* (James has no `city` key, Sarah has no `school` key) versus present-with-`None`. Since `for key, value in data.items()` only ever visits keys that exist, an absent key is never counted at all — `malformed_data` currently reports zero missing values despite 2 of its 4 rows genuinely missing one field each. Mid-session, student tried one fix attempt (`expected_keys = {"name","school","city"}` + exact-match `set()` comparison dumping any mismatched row into `bad_rows`) — this was reviewed and flagged as a regression (reintroduces hardcoded column names; conflates "missing one field" with "not a dict at all") — but that attempt is **not** in the file as of this pause; the file has reverted to the version described above, which simply doesn't handle absent keys at all yet.
+
+**Discussed direction, not yet implemented:** a two-pass approach — first pass collects the union of all keys seen across every row (no hardcoded names), second pass checks, per row per known key, `if key not in row or row[key] is None: counts[key] += 1`. Only genuine type mismatches (`not isinstance(row, dict)`) should count toward `bad_rows`; a dict missing some keys should still get counted per-column, not discarded wholesale.
+
 ## Daily targets — 2026-07-25 (spilling into next session)
-- [ ] Start M1 capstone (lessons/m1-capstone.md): plain-English plan for dynamic columns + sys.argv, reviewed before coding
-- [ ] Resolve the absent-key-vs-None design gap (logged above) as part of the capstone's dynamic missing-value counting
-- [ ] sys.argv CLI argument handling, including missing-argument/missing-file cases
-- [ ] Test against two CSVs with genuinely different column names
-- [ ] REPL lab on sys.argv + dict.get recorded in notes.md (still owed from 1.7, applies directly to capstone)
-- [ ] `dataset_summary` counts missing values per column dynamically (no hardcoded column names) — DONE, verified working
+- [x] sys.argv CLI argument handling, including missing-argument case — DONE in lesson6.py, verified
+- [ ] Start capstone step 0: plain-English plan for dynamic columns, reviewed before coding
+- [ ] Port dynamic per-column counting from lesson3.py into profiler.py, replacing the old hardcoded version
+- [ ] Resolve the absent-key-vs-None design gap as part of the capstone's dynamic missing-value counting
+- [ ] Test against two CSVs with genuinely different column names — not yet attempted
+- [ ] REPL lab on sys.argv + dict.get recorded in notes.md
 - [ ] File path comes from `sys.argv[1]`; missing-argument case handled without a crash
 - [ ] Third dataset with unfamiliar columns proves dynamic counting works; check-yourself answered; committed + pushed
 
