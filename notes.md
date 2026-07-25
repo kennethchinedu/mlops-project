@@ -100,3 +100,15 @@ Raised means an error occurs and Python throws an exception. Handled means an ex
 Catching a specific exception avoids hiding unrelated bugs. A bare except: can accidentally catch unexpected errors like TypeError, NameError, or even KeyboardInterrupt.
 
 Yes. A finally block runs whether or not an exception occurs. It's used for cleanup tasks, such as closing files, releasing resources, or disconnecting from a database.
+
+trying to access a path that does not exist threw FileNotFoundError
+
+The empty row just have '' in it
+
+The with open allows us to autmatically open and close file without having to close it manually.
+
+This matters because an empty CSV cell is returned as an empty string (""), not None. Therefore, checking with is None would not detect missing values in empty cells. Instead, you should check for an empty string
+
+json.load() reada Json from a file object, json.loads() reads json from a string 
+
+__name__ == "__main__"  let us only run the actuall python file name that is being executed

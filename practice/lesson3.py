@@ -50,7 +50,7 @@ def dataset_summary(dataset):
             
 
 
-                
+                 
                 
         except KeyError:
             print("This is not the right Key")
@@ -58,12 +58,14 @@ def dataset_summary(dataset):
         except TypeError:
             print("Dataset does not have the type")
             bad_rows += 1
+
+    
         
        
     
 
 
-                
+               
     return missing_city, missing_name, missing_school, row_count, bad_rows
 
 
@@ -71,13 +73,15 @@ def data_info(missing_city, missing_name, missing_school, row_count, bad_rows):
     print(f"There are {missing_name} missing names, and {missing_school} missing schools and  {missing_city} missing cities in this dataset, with total row is {row_count} and {bad_rows} bad rows")
 
 
-city_res, name_res, school_res, total_rows, bad_rows = dataset_summary(data)
-city_re, name_re, school_re, total, bad_row = dataset_summary(new_data)
-city, name, school, totals, bad = dataset_summary(malformed_data)
+if __name__ == "__main__":
 
-data_info(city_res, name_res, school_res, total_rows, bad_rows)
-data_info(city_re, name_re, school_re, total, bad_row)
-data_info(city, name, school, totals, bad)
+    city_res, name_res, school_res, total_rows, bad_rows = dataset_summary(data)
+    city_re, name_re, school_re, total, bad_row = dataset_summary(new_data)
+    city, name, school, totals, bad = dataset_summary(malformed_data)
+
+    data_info(city_res, name_res, school_res, total_rows, bad_rows)
+    data_info(city_re, name_re, school_re, total, bad_row)
+    data_info(city, name, school, totals, bad)
 
 
 
