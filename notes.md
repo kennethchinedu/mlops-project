@@ -112,3 +112,11 @@ This matters because an empty CSV cell is returned as an empty string (""), not 
 json.load() reada Json from a file object, json.loads() reads json from a string 
 
 __name__ == "__main__"  let us only run the actuall python file name that is being executed
+
+__name__ == "__main__"  when added only allows the entire script to run if the actual name of the file is being executed. codes inside if block only runs when the actual file name is executed not when the module is called
+
+A module in my understanding is llike sources, they contain what the programs needs to actually do, a script is more like an executioner that triggers the module, one file can be both, a file can have a logic and still be able to trigger the logic
+
+It's not entirely a problem cus the module returns nothing, it will just run but noting is actually trigerring the functions themselved and it will return nothing, cus that's what the file itself is all about
+
+It allows me prevent it allows me to test code easily against multiple different datasets, ensure pure function reliability, and prevent side effects.
