@@ -2,11 +2,15 @@
 
 **Goal:** one end-to-end automated MLOps project (see CURRICULUM.md) + entry-level MLOps engineer readiness
 **Current milestone:** M1 — Python core, taught through data
-**Current lesson:** 1.7 — not yet assigned (M1 capstone may be close — see note below)
+**Current lesson:** 1.7 — CLI args & dynamic columns (assigned 2026-07-25; last practice lesson before the M1 capstone attempt)
 **Project dataset:** not chosen yet (decided in M2)
 
 ## Daily targets — 2026-07-25
-- [ ] Assign lesson 1.7, OR assess whether `practice/profiler.py` + `lesson6.py` already substantially satisfies M1's capstone ("CLI tool loads a raw dataset file, prints row count/columns/missing values") and move to a formal capstone review instead
+- [ ] Lesson 1.7: plain-English dynamic-counting plan reviewed before coding
+- [ ] REPL lab on sys.argv + dict.get recorded in notes.md
+- [ ] `dataset_summary` counts missing values per column dynamically (no hardcoded column names)
+- [ ] File path comes from `sys.argv[1]`; missing-argument case handled without a crash
+- [ ] Third dataset with unfamiliar columns proves dynamic counting works; check-yourself answered; committed + pushed
 
 ## M1 capstone status note
 `practice/profiler.py` (pure module: `dataset_summary`, `data_info`, `read_data`, `check_data`) + `practice/lesson6.py` (entry point) already do most of what M1's capstone asks for: load a real CSV, report row count + missing values per column, standard library only. Missing vs. the curriculum's exact wording: doesn't yet report **columns** explicitly (only missing-per-column counts for 3 hardcoded column names — not dynamic per-file column detection), and isn't yet a CLI (no command-line argument for the file path — path is hardcoded in `lesson6.py`). Worth deciding next session: extend this directly into the capstone (add CLI args via `sys.argv` or `argparse`, make column handling dynamic instead of hardcoded name/school/city), or treat 1.6 as the last "practice" lesson and scope the capstone as its own formal exercise.
