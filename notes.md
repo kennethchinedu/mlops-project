@@ -126,3 +126,21 @@ Shape retunrs simply shape of the data, how many rows an columns, row first then
 I beieve pandas is checking columns with None or null valus and adding them all up
 
 M1 helps me understand the underlaying process that goes into this result, it opens the file, read it, check for colums issues and apply arithmetics or functions on them.
+
+It's roughly 33% Canceled, 67% Not_Canceled — a real skew
+
+avg_price_per_room is a numeric columns, hence it does computation, booking_status is more like a category columns, hence it tries to sumerize it based on that
+
+
+
+ Significant Target Imbalance 
+ The target variable is heavily skewed toward Not_Canceled (24,393) vs. Canceled (11,885).
+Impact Machine learning models may struggle to accurately predict cancellations because they will be biased toward the majority class.
+
+Highly Skewed Categories type_of_meal_plan
+Meal Plan 1 accounts for over 76% of all entries (27,838), while Meal Plan 3 has only 5 total occurrences.
+
+Meal Plan 3 does not have enough data points to provide statistically meaningful insights and will likely need to be dropped or merged.
+
+Hidden Missing Values type_of_meal_plan
+ There are 5,130 entries explicitly categorized as Not Selected.
