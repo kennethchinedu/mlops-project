@@ -4,6 +4,13 @@
 **Current milestone:** M2 — Dataset, EDA & a real cleaning pipeline (capstone review milestone)
 **Previous milestone:** M1 CAPSTONE — CLI dataset profiler — CORE FUNCTIONALITY PASSED 2026-07-26 (see lessons/m1-capstone.md). One optional follow-up not fully closed: testing against a CSV with genuinely different column names (logged, non-blocking). Student chose to move on to M2 rather than close that gap first.
 **Project dataset:** `~/Desktop/Mlops/Datasets/Hotel_Reservation.csv` — chosen 2026-07-26. ~36,280 rows, 18 columns, binary prediction target `booking_status` (Canceled / Not_Canceled). Real messiness confirmed present (at least one `NaN` visible in `market_segment_type` on inspection). Note: a second file in the same folder, `Hotel_Reservations_Data.csv`, was checked and rejected — despite its `.csv` extension it's actually a raw `.xlsx`/ZIP file, not real CSV data; do not use it.
+**Current lesson:** 2.1 — pandas basics: loading real data properly (assigned 2026-07-26)
+
+## Daily targets — 2026-07-26
+- [ ] Install pandas (+ check whether NumPy comes along), update requirements.txt
+- [ ] REPL lab: df.shape, df.head(), df.info(), df.isnull().sum() on the real Hotel_Reservation.csv, recorded in notes.md
+- [ ] Build practice/lesson_pandas.py: shape + columns/dtypes + missing-per-column, pandas methods only
+- [ ] Check-yourself answered; committed + pushed
 
 ## Completed lessons
 - 0.1 — Python verification + git basics (PASSED 2026-07-10 after 3 review rounds)
