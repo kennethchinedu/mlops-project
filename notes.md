@@ -131,6 +131,7 @@ It's roughly 33% Canceled, 67% Not_Canceled — a real skew
 
 avg_price_per_room is a numeric columns, hence it does computation, booking_status is more like a category columns, hence it tries to sumerize it based on that
 
+value_counts() by defaults drops NAN values
 
 
  Significant Target Imbalance 
@@ -144,3 +145,10 @@ Meal Plan 3 does not have enough data points to provide statistically meaningful
 
 Hidden Missing Values type_of_meal_plan
  There are 5,130 entries explicitly categorized as Not Selected.
+
+
+Assets check what your function is expeccted to return  vs what it actually did, when an assert conditio is false, python throws an AsertError to hat that specific test while pytest intercepts it to report the exact differences and values hat caused failure
+
+Writing. atest before function put you in a position to focus on what a function should do and return, also helps you think of edge cases before you write the function
+
+when you start the function name with htest
