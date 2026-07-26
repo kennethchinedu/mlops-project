@@ -4,7 +4,7 @@
 **Current milestone:** M2 — Dataset, EDA & a real cleaning pipeline (capstone review milestone)
 **Previous milestone:** M1 CAPSTONE — CLI dataset profiler — CORE FUNCTIONALITY PASSED 2026-07-26 (see lessons/m1-capstone.md). One optional follow-up not fully closed: testing against a CSV with genuinely different column names (logged, non-blocking). Student chose to move on to M2 rather than close that gap first.
 **Project dataset:** `~/Desktop/Mlops/Datasets/Hotel_Reservation.csv` — chosen 2026-07-26. ~36,280 rows, 18 columns, binary prediction target `booking_status` (Canceled / Not_Canceled). Real messiness confirmed present (at least one `NaN` visible in `market_segment_type` on inspection). Note: a second file in the same folder, `Hotel_Reservations_Data.csv`, was checked and rejected — despite its `.csv` extension it's actually a raw `.xlsx`/ZIP file, not real CSV data; do not use it.
-**Current lesson:** 2.3 — not yet assigned
+**Current lesson:** 2.3 — pytest basics (assigned 2026-07-26)
 **Dataset EDA findings so far (from lesson 2.2, will drive cleaning-pipeline decisions):**
 - Target `booking_status` imbalanced ~33% Canceled / 67% Not_Canceled — real skew, not extreme; must be considered in M3 (a naive always-predict-majority model gets ~67% accuracy "for free")
 - `type_of_meal_plan` has a near-empty category `Meal Plan 3` (only 5 of 36,278 rows) — likely needs dropping or merging, not enough data to be meaningful
@@ -12,8 +12,10 @@
 - `.value_counts()` hides NaN by default (verified: `market_segment_type` sums to 36,261 without `NaN`, needs `dropna=False` to show the 18 actual missing as their own row)
 
 ## Daily targets — 2026-07-26
-- [ ] Assign and start lesson 2.3
-- [ ] Summary of concrete dataset-quality findings in notes.md; check-yourself answered; committed + pushed
+- [ ] Install pytest, update requirements.txt
+- [ ] Write one tiny function + 2+ tests (normal case, edge case) in practice/lesson_pytest.py
+- [ ] Run pytest, witness a real pass; deliberately break the function, witness a real failure, then fix it
+- [ ] Check-yourself answered; committed + pushed
 
 ## Completed lessons
 - 0.1 — Python verification + git basics (PASSED 2026-07-10 after 3 review rounds)
