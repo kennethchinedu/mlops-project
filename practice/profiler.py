@@ -2,39 +2,40 @@ import csv
 def dataset_summary(dataset):
     row_count = 0
     bad_rows = 0
-    missing_name = 0
-    missing_school =0
-    missing_city = 0
+    counts = {}
+
+    
+    columns = []
+
+    for row in dataset:
+        if isinstance(row, dict):
+            for key in row.keys():
+                if key not in columns:
+                    columns.append(key)
+
 
     for data in dataset:
         row_count += 1
-    
-        try:
-            
-            name = data["name"]
-            school = data["school"]
-            city = data["city"]
 
-            if name is None:
-                missing_name += 1
-            if school  is None:
-                missing_school += 1
-            if city is None:
-                missing_city += 1
-                            
-        except KeyError:
-            print("This is not the right Key")
+        if not isinstance(data, dict):
             bad_rows += 1
-        except TypeError:
-            print("Dataset does not have the type")
-            bad_rows += 1
-   
-    return missing_city, missing_name, missing_school, row_count, bad_rows
+            continue
 
+        for column in columns:
+            if column not in data or data[column] is None:
+                counts[column] = counts.get(column, 0) + 1
 
-def data_info(missing_city, missing_name, missing_school, row_count, bad_rows):
-    print(f"There are {missing_name} missing names, and {missing_school} missing schools and  {missing_city} missing cities in this dataset, with total row is {row_count} and {bad_rows} bad rows")
+    return bad_rows, row_count, counts
 
+def data_info(bad_rows, row_count, counts):
+    if not counts:
+        print(f"No missing values found. {bad_rows} bad rows and total {row_count} rows")
+    else:
+        for key, value in counts.items():
+            print(
+                f"The following are the missing columns in the dataset {key}: {value}. "
+                f"{bad_rows} bad rows and total {row_count} rows"
+            )
 
 
 
@@ -68,8 +69,8 @@ def check_data(data):
         print("Dataset returned an empty list")
 
     else:
-        city_res, name_res, school_res, total_rows, bad_rows = dataset_summary(data)
-        data_info(city_res, name_res, school_res, total_rows, bad_rows)
+        bad_rows, row_count, counts = dataset_summary(data)
+        data_info(bad_rows, row_count, counts)
     
     return data
 

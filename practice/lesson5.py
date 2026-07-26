@@ -1,4 +1,5 @@
 import csv
+from itertools import count
 from lesson3 import dataset_summary, data_info
 
 
@@ -7,12 +8,15 @@ from lesson3 import dataset_summary, data_info
 def read_data(datapath):
 
     dataset = []
+    counts = {}
 
     try:
 
         with open(datapath, newline='') as csvfile:
             
             reader = csv.DictReader(csvfile)
+
+
             for row in reader:
                 for key, value in row.items():
                     if value == '':
@@ -20,7 +24,7 @@ def read_data(datapath):
                   
                 dataset.append(row)
 
-        return dataset  
+        return dataset 
 
     except FileNotFoundError:
         print(f"The data can't be found in this path {datapath}")
@@ -28,7 +32,7 @@ def read_data(datapath):
     
     
 data2 = read_data('practice/data/data2.csv')
-data = read_data('practice/data/data.csv')
+# data = read_data('practice/data/data.csv')
    
 def check_data(data):
 
@@ -43,5 +47,5 @@ def check_data(data):
 
 if __name__ == "__main__":
 
-    check_data(data)
+    # check_data(data)
     check_data(data2)
