@@ -120,3 +120,9 @@ A module in my understanding is llike sources, they contain what the programs ne
 It's not entirely a problem cus the module returns nothing, it will just run but noting is actually trigerring the functions themselved and it will return nothing, cus that's what the file itself is all about
 
 It allows me prevent it allows me to test code easily against multiple different datasets, ensure pure function reliability, and prevent side effects.
+
+Shape retunrs simply shape of the data, how many rows an columns, row first then columns
+
+I beieve pandas is checking columns with None or null valus and adding them all up
+
+M1 helps me understand the underlaying process that goes into this result, it opens the file, read it, check for colums issues and apply arithmetics or functions on them.
