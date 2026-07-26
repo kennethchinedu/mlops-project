@@ -1,9 +1,9 @@
 # Progress
 
 **Goal:** one end-to-end automated MLOps project (see CURRICULUM.md) + entry-level MLOps engineer readiness
-**Current milestone:** M1 — Python core, taught through data
-**Current lesson:** M1 CAPSTONE — CLI dataset profiler — CORE FUNCTIONALITY PASSED 2026-07-26 (see lessons/m1-capstone.md). One optional follow-up not yet done: testing against a CSV with genuinely different column names (see capstone entry below). Next: decide whether to close M1 now or do that follow-up first, then move to M2.
-**Project dataset:** not chosen yet (decided in M2)
+**Current milestone:** M2 — Dataset, EDA & a real cleaning pipeline (capstone review milestone)
+**Previous milestone:** M1 CAPSTONE — CLI dataset profiler — CORE FUNCTIONALITY PASSED 2026-07-26 (see lessons/m1-capstone.md). One optional follow-up not fully closed: testing against a CSV with genuinely different column names (logged, non-blocking). Student chose to move on to M2 rather than close that gap first.
+**Project dataset:** `~/Desktop/Mlops/Datasets/Hotel_Reservation.csv` — chosen 2026-07-26. ~36,280 rows, 18 columns, binary prediction target `booking_status` (Canceled / Not_Canceled). Real messiness confirmed present (at least one `NaN` visible in `market_segment_type` on inspection). Note: a second file in the same folder, `Hotel_Reservations_Data.csv`, was checked and rejected — despite its `.csv` extension it's actually a raw `.xlsx`/ZIP file, not real CSV data; do not use it.
 
 ## Completed lessons
 - 0.1 — Python verification + git basics (PASSED 2026-07-10 after 3 review rounds)
