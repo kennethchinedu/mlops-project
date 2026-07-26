@@ -151,4 +151,4 @@ Assets check what your function is expeccted to return  vs what it actually did,
 
 Writing. atest before function put you in a position to focus on what a function should do and return, also helps you think of edge cases before you write the function
 
-when you start the function name with htest
+when you start the function name with test
