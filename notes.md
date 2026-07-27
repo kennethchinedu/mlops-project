@@ -157,4 +157,5 @@ No, python does not enforce type hints in runtime
 
 The test does not need to load the large amount of data over again into memory every time it runs, this wil slow it dowwn
 
-Inentionally leave out of scop of this session, because it's how the data should be
+Given that the coulmn it's representing are little fraction of the data, I will drop it from the dataset
+
