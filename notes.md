@@ -152,3 +152,9 @@ Assets check what your function is expeccted to return  vs what it actually did,
 Writing. atest before function put you in a position to focus on what a function should do and return, also helps you think of edge cases before you write the function
 
 when you start the function name with test
+
+No, python does not enforce type hints in runtime
+
+The test does not need to load the large amount of data over again into memory every time it runs, this wil slow it dowwn
+
+Inentionally leave out of scop of this session, because it's how the data should be
