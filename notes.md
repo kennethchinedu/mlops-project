@@ -159,3 +159,8 @@ The test does not need to load the large amount of data over again into memory e
 
 Given that the coulmn it's representing are little fraction of the data, I will drop it from the dataset
 
+print() always writes directly to the console, logging.info() sends a log message to Python's logging system. Whether you actually see it depends on how logging is configured.
+
+WARNING draws the right awareness to important things, remving rows is part of it, INFO just give information and DEBUG is basically an error kind of attension
+
+No, the order does not matter in this case. drop_rare_meal_plan only modifies rows where the value is "Meal Plan 3", while clean_meal_plan only modifies rows where the value is "Not Selected". A single row cannot be both "Meal Plan 3" and "Not Selected" at the same time, so the two functions never operate on the same row. Whether you run drop_rare_meal_plan first or clean_meal_plan first, the final dataset will be the same.
