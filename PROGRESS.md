@@ -4,7 +4,7 @@
 **Current milestone:** M2 — Dataset, EDA & a real cleaning pipeline (capstone review milestone)
 **Previous milestone:** M1 CAPSTONE — CLI dataset profiler — CORE FUNCTIONALITY PASSED 2026-07-26 (see lessons/m1-capstone.md). One optional follow-up not fully closed: testing against a CSV with genuinely different column names (logged, non-blocking). Student chose to move on to M2 rather than close that gap first.
 **Project dataset:** `~/Desktop/Mlops/Datasets/Hotel_Reservation.csv` — chosen 2026-07-26. ~36,280 rows, 18 columns, binary prediction target `booking_status` (Canceled / Not_Canceled). Real messiness confirmed present (at least one `NaN` visible in `market_segment_type` on inspection). Note: a second file in the same folder, `Hotel_Reservations_Data.csv`, was checked and rejected — despite its `.csv` extension it's actually a raw `.xlsx`/ZIP file, not real CSV data; do not use it.
-**Current lesson:** 2.6 — not yet assigned
+**Current lesson:** 2.6 — real missing values: imputation + a dataclass config (assigned 2026-07-31)
 **Dataset EDA findings so far (from lesson 2.2, will drive cleaning-pipeline decisions):**
 - Target `booking_status` imbalanced ~33% Canceled / 67% Not_Canceled — real skew, not extreme; must be considered in M3 (a naive always-predict-majority model gets ~67% accuracy "for free")
 - `type_of_meal_plan` has a near-empty category `Meal Plan 3` (only 5 of 36,278 rows) — FIXED in lesson 2.5 via `drop_rare_meal_plan` in `src/cleaning.py`
@@ -12,7 +12,11 @@
 - `.value_counts()` hides NaN by default (verified: `market_segment_type` sums to 36,261 without `NaN`, needs `dropna=False` to show the 18 actual missing as their own row) — not yet cleaned (still just documented, no function written for `market_segment_type`, `arrival_year`, or `avg_price_per_room`'s missing values yet — candidate for lesson 2.6)
 
 ## Daily targets — 2026-07-31
-- [ ] Assign and start lesson 2.6
+- [ ] Lesson 2.6: plain-English imputation-strategy + dataclass plan reviewed before coding
+- [ ] REPL lab: mean vs median on avg_price_per_room, mode() tie behavior, tiny hand-built @dataclass, recorded in notes.md
+- [ ] Test-first: fill_missing_median / fill_missing_mode (type hints), tests pass
+- [ ] Small @dataclass config defined and correctly instantiated in src/config.py
+- [ ] Verified against real dataset: avg_price_per_room, arrival_year, market_segment_type all reach 0 missing
 - [ ] Check-yourself answered; committed + pushed
 
 ## Completed lessons
