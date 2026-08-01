@@ -4,18 +4,28 @@
 **Current milestone:** M2 — Dataset, EDA & a real cleaning pipeline (capstone review milestone)
 **Previous milestone:** M1 CAPSTONE — CLI dataset profiler — CORE FUNCTIONALITY PASSED 2026-07-26 (see lessons/m1-capstone.md). One optional follow-up not fully closed: testing against a CSV with genuinely different column names (logged, non-blocking). Student chose to move on to M2 rather than close that gap first.
 **Project dataset:** `~/Desktop/Mlops/Datasets/Hotel_Reservation.csv` — chosen 2026-07-26. ~36,280 rows, 18 columns, binary prediction target `booking_status` (Canceled / Not_Canceled). Real messiness confirmed present (at least one `NaN` visible in `market_segment_type` on inspection). Note: a second file in the same folder, `Hotel_Reservations_Data.csv`, was checked and rejected — despite its `.csv` extension it's actually a raw `.xlsx`/ZIP file, not real CSV data; do not use it.
-**Current lesson:** 2.6 — real missing values: imputation + a dataclass config (assigned 2026-07-31)
+**Current lesson:** 2.6 — real missing values: imputation + a dataclass config (assigned 2026-07-31) — IN PROGRESS, planning stage only, no code written yet. Resume from: deciding the dataclass shape (one field per column vs. one instance per column, each with a `column`/`strategy` field pair) before writing any code.
 **Dataset EDA findings so far (from lesson 2.2, will drive cleaning-pipeline decisions):**
 - Target `booking_status` imbalanced ~33% Canceled / 67% Not_Canceled — real skew, not extreme; must be considered in M3 (a naive always-predict-majority model gets ~67% accuracy "for free")
 - `type_of_meal_plan` has a near-empty category `Meal Plan 3` (only 5 of 36,278 rows) — FIXED in lesson 2.5 via `drop_rare_meal_plan` in `src/cleaning.py`
 - `type_of_meal_plan`'s disguised missing value `"Not Selected"` (5,130 rows) — FIXED in lesson 2.4 via `clean_meal_plan` in `src/cleaning.py`
 - `.value_counts()` hides NaN by default (verified: `market_segment_type` sums to 36,261 without `NaN`, needs `dropna=False` to show the 18 actual missing as their own row) — not yet cleaned (still just documented, no function written for `market_segment_type`, `arrival_year`, or `avg_price_per_room`'s missing values yet — candidate for lesson 2.6)
 
-## Daily targets — 2026-07-31
-- [ ] Lesson 2.6: plain-English imputation-strategy + dataclass plan reviewed before coding
-- [ ] REPL lab: mean vs median on avg_price_per_room, mode() tie behavior, tiny hand-built @dataclass, recorded in notes.md
+## Lesson 2.6 progress so far (paused 2026-08-01, no code committed yet)
+**Strategy decided, with real evidence, not guesses:**
+- `avg_price_per_room` → median. Verified: mean `103.53` vs median `99.45`, a real ~$4 gap consistent with right-skew from expensive outlier rooms.
+- `market_segment_type` → mode. Verified: `.mode()` returns exactly one value (`"Online"`), no tie to handle.
+- `arrival_year` → mode, NOT median. Real evidence-driven correction: student initially guessed median (numeric column reflex), then briefly proposed mean, but `.describe()` showed only 2 distinct values (2017/2018, min/max) — a mean would produce a nonsensical fractional year like `2017.82`; mode correctly gives back a real year (`2018`). Good, evidence-based reasoning once directed to check `.describe()` rather than pattern-match on dtype.
+
+**Dataclass concept understood** — REPL lab done: hand-built a `Point(x, y)` dataclass, observed `print()` gives `Point(x=1, y=2)` instead of a useless memory address, confirmed field access works normally.
+
+**Not yet decided:** the dataclass's actual shape — one field per column (`avg_price_per_room: str`, etc., hardcoded to these 3 columns) vs. one small reusable instance per column (a `column`/`strategy` field pair, instantiated 3 times) — question posed, not yet answered when session ended.
+
+**Not yet started:** no test written, no imputation function written, no `src/config.py` created — session was entirely spent on the planning/REPL-lab phase (step 0 and step 1 of the checklist). Resume from the dataclass-shape decision, then test-first as usual.
+
+## Daily targets — 2026-08-01 (carried over)
+- [ ] Decide dataclass shape (see above), then define it in src/config.py
 - [ ] Test-first: fill_missing_median / fill_missing_mode (type hints), tests pass
-- [ ] Small @dataclass config defined and correctly instantiated in src/config.py
 - [ ] Verified against real dataset: avg_price_per_room, arrival_year, market_segment_type all reach 0 missing
 - [ ] Check-yourself answered; committed + pushed
 
