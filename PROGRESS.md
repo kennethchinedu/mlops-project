@@ -4,15 +4,23 @@
 **Current milestone:** M2 — Dataset, EDA & a real cleaning pipeline (capstone review milestone)
 **Previous milestone:** M1 CAPSTONE — CLI dataset profiler — CORE FUNCTIONALITY PASSED 2026-07-26 (see lessons/m1-capstone.md). One optional follow-up not fully closed: testing against a CSV with genuinely different column names (logged, non-blocking). Student chose to move on to M2 rather than close that gap first.
 **Project dataset:** `~/Desktop/Mlops/Datasets/Hotel_Reservation.csv` — chosen 2026-07-26. ~36,280 rows, 18 columns, binary prediction target `booking_status` (Canceled / Not_Canceled). Real messiness confirmed present (at least one `NaN` visible in `market_segment_type` on inspection). Note: a second file in the same folder, `Hotel_Reservations_Data.csv`, was checked and rejected — despite its `.csv` extension it's actually a raw `.xlsx`/ZIP file, not real CSV data; do not use it.
-**Current lesson:** 2.7 — assembling the full pipeline: raw file in, clean file out (assigned 2026-08-02). This is close to M2's actual capstone deliverable per CURRICULUM.md ("src/ package with a tested, logged, config-driven cleaning pipeline: raw file in → clean training file out, rerunnable, deterministic").
+**Current lesson:** 2.7 — assembling the full pipeline: raw file in, clean file out (assigned 2026-08-02) — IN PROGRESS, paused mid-session. This is close to M2's actual capstone deliverable per CURRICULUM.md ("src/ package with a tested, logged, config-driven cleaning pipeline: raw file in → clean training file out, rerunnable, deterministic").
 **Dataset EDA findings so far (from lesson 2.2, will drive cleaning-pipeline decisions):**
 - Target `booking_status` imbalanced ~33% Canceled / 67% Not_Canceled — real skew, not extreme; must be considered in M3 (a naive always-predict-majority model gets ~67% accuracy "for free")
 - `type_of_meal_plan` has a near-empty category `Meal Plan 3` (only 5 of 36,278 rows) — FIXED in lesson 2.5 via `drop_rare_meal_plan` in `src/cleaning.py`
 - `type_of_meal_plan`'s disguised missing value `"Not Selected"` (5,130 rows) — FIXED in lesson 2.4 via `clean_meal_plan` in `src/cleaning.py`
 - `avg_price_per_room` (6 missing), `market_segment_type` (18 missing), `arrival_year` (7 missing) — all FIXED in lesson 2.6 via `fill_missing` + `ColumnConfig` in `src/config.py`. All three EDA-documented missing-value issues are now resolved; every column with a known data-quality issue has a working cleaning function.
 
-## Daily targets — 2026-08-02
-- [ ] Lesson 2.7: plain-English call-order plan reviewed before coding
+## Lesson 2.7 progress so far (paused 2026-08-02, changes uncommitted by student's choice — nothing lost, just not yet pushed)
+**Real, verified design fix made this session:** `drop_rare_meal_plan` was reshaped from `Series -> Series` to `DataFrame -> DataFrame`. This was necessary, not cosmetic — student correctly reasoned through why: dropping a row because of one column's value (`"Meal Plan 3"`) must drop the *entire row* from every column, not just filter that one column's Series in isolation (which would have left other columns misaligned/wrong length). Verified directly in the REPL first (`df[mask]` drops whole rows) before touching the real function. `tests/test_cleaning.py::test_drop_rare_meal_plan` updated to match — now builds a small 2-column DataFrame instead of a bare Series, asserts both `"Meal Plan 3" not in result["type_of_meal_plan"].values` and `len(result) == 2`. All 5 tests pass. Verified against the real dataset: `(36279, 19) → (36274, 19)`, all 19 columns preserved, 5 rows removed — confirms whole-row dropping now works correctly at full scale, not just on the toy test sample.
+
+**Not yet started:** `run_pipeline(input_path, output_path)` itself doesn't exist yet — session was spent entirely on the necessary `drop_rare_meal_plan` prerequisite fix (discovered while planning the pipeline's call order) rather than the pipeline assembly itself. Next session should resume directly at: writing `run_pipeline`, wiring `clean_meal_plan` (Series-shaped — needs pulling the column out and putting it back) + `drop_rare_meal_plan` (now DataFrame-shaped, slots in directly) + `fill_missing` (DataFrame-shaped, slots in directly) in sequence, then `.to_csv(...)`.
+
+**Uncommitted files as of pause:** `src/cleaning.py`, `tests/test_cleaning.py` — both have real, tested, working changes; student chose not to commit yet, said they'd handle it next session.
+
+## Daily targets — 2026-08-02 (carried to next session)
+- [ ] Commit the drop_rare_meal_plan DataFrame-reshape (still pending from this session)
+- [ ] Plain-English run_pipeline call-order plan reviewed before coding
 - [ ] Test-first: run_pipeline logic on a hand-built DataFrame covering all known issues
 - [ ] run_pipeline(input_path, output_path) reads raw CSV, runs all cleaning functions in order, writes output
 - [ ] Determinism check: run twice, confirm identical output
