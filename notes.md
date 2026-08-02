@@ -164,3 +164,10 @@ print() always writes directly to the console, logging.info() sends a log messag
 WARNING draws the right awareness to important things, remving rows is part of it, INFO just give information and DEBUG is basically an error kind of attension
 
 No, the order does not matter in this case. drop_rare_meal_plan only modifies rows where the value is "Meal Plan 3", while clean_meal_plan only modifies rows where the value is "Not Selected". A single row cannot be both "Meal Plan 3" and "Not Selected" at the same time, so the two functions never operate on the same row. Whether you run drop_rare_meal_plan first or clean_meal_plan first, the final dataset will be the same.
+
+Median is preferred because it isn't affected much by outliers, while the mean is pulled toward extreme values. In the REPL lab, the mean changed significantly because of the outlier, but the median stayed representative of the typical value.
+
+A @dataclass automatically generates the __init__ (and other useful methods), so you don't have to write boilerplate code yourself.
+
+
+If there is a tie for the mode, you might fill missing values with an arbitrary category instead of detecting that multiple equally common values exist, leading to inconsistent results.
