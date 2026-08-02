@@ -4,7 +4,7 @@
 **Current milestone:** M2 — Dataset, EDA & a real cleaning pipeline (capstone review milestone)
 **Previous milestone:** M1 CAPSTONE — CLI dataset profiler — CORE FUNCTIONALITY PASSED 2026-07-26 (see lessons/m1-capstone.md). One optional follow-up not fully closed: testing against a CSV with genuinely different column names (logged, non-blocking). Student chose to move on to M2 rather than close that gap first.
 **Project dataset:** `~/Desktop/Mlops/Datasets/Hotel_Reservation.csv` — chosen 2026-07-26. ~36,280 rows, 18 columns, binary prediction target `booking_status` (Canceled / Not_Canceled). Real messiness confirmed present (at least one `NaN` visible in `market_segment_type` on inspection). Note: a second file in the same folder, `Hotel_Reservations_Data.csv`, was checked and rejected — despite its `.csv` extension it's actually a raw `.xlsx`/ZIP file, not real CSV data; do not use it.
-**Current lesson:** 2.7 — not yet assigned
+**Current lesson:** 2.7 — assembling the full pipeline: raw file in, clean file out (assigned 2026-08-02). This is close to M2's actual capstone deliverable per CURRICULUM.md ("src/ package with a tested, logged, config-driven cleaning pipeline: raw file in → clean training file out, rerunnable, deterministic").
 **Dataset EDA findings so far (from lesson 2.2, will drive cleaning-pipeline decisions):**
 - Target `booking_status` imbalanced ~33% Canceled / 67% Not_Canceled — real skew, not extreme; must be considered in M3 (a naive always-predict-majority model gets ~67% accuracy "for free")
 - `type_of_meal_plan` has a near-empty category `Meal Plan 3` (only 5 of 36,278 rows) — FIXED in lesson 2.5 via `drop_rare_meal_plan` in `src/cleaning.py`
@@ -12,7 +12,12 @@
 - `avg_price_per_room` (6 missing), `market_segment_type` (18 missing), `arrival_year` (7 missing) — all FIXED in lesson 2.6 via `fill_missing` + `ColumnConfig` in `src/config.py`. All three EDA-documented missing-value issues are now resolved; every column with a known data-quality issue has a working cleaning function.
 
 ## Daily targets — 2026-08-02
-- [ ] Assign and start lesson 2.7
+- [ ] Lesson 2.7: plain-English call-order plan reviewed before coding
+- [ ] Test-first: run_pipeline logic on a hand-built DataFrame covering all known issues
+- [ ] run_pipeline(input_path, output_path) reads raw CSV, runs all cleaning functions in order, writes output
+- [ ] Determinism check: run twice, confirm identical output
+- [ ] Verify written output file: fresh read + isnull().sum() shows 0 for all addressed columns
+- [ ] Check-yourself answered; committed + pushed
 
 ## Completed lessons
 - 0.1 — Python verification + git basics (PASSED 2026-07-10 after 3 review rounds)
